@@ -141,6 +141,10 @@ You can check and test the API documentation on
 
 To check the full schema for the GraphQL API, with allthe Queries and Mutations, please check the file `schema.txt` on the directory `/deepcell-evaluator/deepcel_evaluator/files/graphql` .
 
+API -> https://i63dyxalunaxzafaxgcbr72r3q.appsync-api.us-east-1.amazonaws.com/graphql
+
+KEY -> da2-uddaevrqsrgwpgbvp6lf44boha
+
   **Sample Create Request:**
 
         mutation CreateExample {
