@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+	<script>
+		$(document).ready(function() {
+			$("button").click(function(e) {
+
+				var url_base = "https://7n2tohdq9f.execute-api.us-east-1.amazonaws.com/prod"
+				
+				var method = $(this).attr('method');
+				var respDir = $(this).attr('respdir');
+				var path = $(this).attr('path');
+
+				var settings = {
+                    "url": url_base + path,
+                    "method": method
+                }
+
+				var sub = $(this).attr('sub');
+				var string = $(this).attr('string');
+				var id = $(this).attr('id');
+				var limit = $(this).attr('limit');
+
+				if (sub && string && id){ // update
+					settings.url += '?id=' + $('#'+id).val()
+					settings.data = {
+						"sub":$('#'+sub).val(),
+						"string":$('#'+string).val()
+					}
+					settings.processData = false;
+					settings.async = true;
+					settings.crossDomain = true;
+					settings.headers = {
+						"content-type": "application/json"
+					};
+				} else if (sub && string){ //create
+					settings.url += '?sub=' + $('#'+sub).val() + '&string=' + $('#'+string).val()
+				} else if (id){ // check or delete
+					settings.url += '?id=' + $('#'+id).val()
+				} else if (limit){ //list
+					settings.url += '?limit=' + $('#'+limit).val()
+				}
+
+				var resp = document.getElementById(respDir);
+				resp.innerHTML = ''
+
+				console.log(settings)
+
+				$.ajax(settings).done(function (response) {
+					if (path=='/list'){
+						Object.keys(response.message).forEach(function(k){
+							Object.keys(response.message[k]).forEach(function(j){
+								resp.innerHTML += '<p>Evaluation ' + k + ': ' + j + ' -> ' +response.message[k][j] + '</p>'	
+							});				
+						});
+
+					} else{
+						Object.keys(response.message).forEach(function(k){
+							resp.innerHTML += '<p>' + k + ' -> ' + response.message[k] + '</p>'						
+						});
+					}		
+				  });
+			});
+		});
+	</script>
+	
+	
+	<meta charset="utf-8">
+	<h1>Deepcell API Example Page</h1>
+    <h2>Evaluator Challange</h2>
+	<meta name="author" content="Rafael Gonçalves">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	
+</head>
+<body>
+
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 class="remove-bottom" style="margin-top: 40px"> <a href="https://github.com/raafaadg/deepcell-evaluator/tree/production">CLICK TO LEARN MORE ABOUT </a> </a></h1>
+			<h5>REST Api Endpoints List</h5>
+			<hr />
+		</div>
+		<div class="six columns" id="sidebar">
+			<dl>
+				<div class="eleven columns"></div>
+					<h3>PING</h3><h4>POST /ping</h4>
+					<div id="ping-response">
+					</div>
+					<button type="button" method="POST" path="/ping" respDir="ping-response">Ping</button>
+				</div>
+				<div class="eleven columns"></div>
+					<h3>Create Evaluation</h3><h4>POST /evaluation?sub={sub}&string={string}</h4>
+					<label for="sub">Sub   :</label>
+					<input type="text" id="subcreate"><br><br>
+					<label for="string">String : </label>
+					<input type="text" id="stringcreate"><br><br>
+					<div id="evaluation-response">
+					</div>
+					<button type="button" method="POST" path="/evaluate" respDir="evaluation-response" sub="subcreate" string="stringcreate">Create</button>
+				</div>
+				<div class="eleven columns"></div>
+					<h3>Check Evaluation</h3><h4>GET /check?id={id}</h4>
+					<label for="id">ID:</label>
+					<input type="text" id="idcheck"><br><br>
+					<div id="check-response">
+					</div>
+					<button type="button" method="GET" path="/check" respDir="check-response" id="idcheck">Check</button>
+				</div>
+				<div class="eleven columns"></div>
+					<h3>Update Evaluation</h3><h4>POST /update?id={id} -d {sub:{sub}, string:{string}}</h4>
+					<label for="id">ID:</label>
+					<input type="text" id="idupdate"><br><br>
+					<label for="sub">Sub   :</label>
+					<input type="text" id="subupdate"><br><br>
+					<label for="string">String : </label>
+					<input type="text" id="stringupdate"><br><br>
+					<div id="update-response">
+					</div>
+					<button type="button" method="POST" path="/update" respDir="update-response" id="idupdate" sub="subupdate" string="stringupdate">Update</button>
+				</div>
+				<div class="eleven columns"></div>
+					<h3>Delete Evaluation</h3><h4>DELETE /delete?id={id}</h4>
+					<label for="id">ID:</label>
+					<input type="text" id="iddelete"><br><br>
+					<div id="delete-response">
+					</div>
+					<button type="button" method="DELETE" path="/delete" respDir="delete-response" id="iddelete">Delete</button>
+				</div>
+				<div class="eleven columns"></div>
+					<h3>List Evaluatinos {Limit Max. 20}</h3><h4>GET /list?limit={id}</h4>
+					<label for="limit">LIMIT:</label>
+					<input type="text" id="idlimit"><br><br>
+					<div id="limit-response">
+					</div>
+					<button type="button" method="GET" path="/list" respDir="limit-response" limit="idlimit">List</button>
+				</div>
+
+			</dl>
+		</div>
+	</div>
+
+</body>
+</html>

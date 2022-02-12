@@ -1,0 +1,36 @@
+
+type Evaluations {
+    id: ID!
+    sub:String!
+    string:String!
+    result:Int
+    conditions:[String]
+    message:String
+    timestamp:String
+    }
+
+type PaginatedEvaluations {
+    items: [Evaluations]!
+    nextToken: String
+    }
+
+type Query {
+    allEvaluations(limit: Int, nextToken: String): PaginatedEvaluations!
+    getEvaluation(id: ID!): Evaluations
+    }
+
+type Mutation {
+    createEvaluation(
+        sub:String!,
+        string:String!): Evaluations
+    deleteEvaluation(id: ID!): Evaluations
+    updateEvaluation(
+        id: ID!,
+        sub:String!,
+        string:String!): Evaluations
+    }
+
+type Schema {
+    query: Query
+    mutation: Mutation
+    }

@@ -1,0 +1,7 @@
+werkzeug==1.0.1
+flask==1.1.2
+serverless-wsgi==1.7.6
+boto3
+flask-cors
+aws_lambda_powertools
+flask_swagger_ui
