@@ -1,5 +1,5 @@
 
-# Deepcell Evaluator - Challange
+# Deepcell Evaluator - Challenge
 
 This project was developed inspired by the challenge proposed in the HackerRank platform. The purpose is to have a service capable of performing the same request, however, being served through a REST and GraphQl API.
 

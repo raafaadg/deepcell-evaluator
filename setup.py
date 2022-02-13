@@ -9,7 +9,7 @@ setuptools.setup(
     name="deepcell-evaluator",
     version="0.0.1",
 
-    description="Api to solve Deepcell Challange using GraphQl and REST APIs, Python CDK for AWS infra and GitHub for CI/CD",
+    description="Api to solve Deepcell Challenge using GraphQl and REST APIs, Python CDK for AWS infra and GitHub for CI/CD",
     long_description=long_description,
     long_description_content_type="text/markdown",
 
