@@ -135,7 +135,7 @@ To make a request on a lambda running locally, is required to pass on the body a
 ## Rest API
 
 You can check and test the API documentation on 
-[SWAGGER](https://7n2tohdq9f.execute-api.us-east-1.amazonaws.com/prod/api/docs/).
+[SWAGGER](https://s3.amazonaws.com/deepcell-evaluator.com/docs/index.html#/).
 
     
 ## GraphQl API
