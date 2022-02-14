@@ -51,5 +51,7 @@ RUN chmod 755 /usr/bin/aws-lambda-rie
 COPY entry.sh /
 RUN chmod +x entry.sh
 
+RUN pip install awscli
+
 ENTRYPOINT [ "./entry.sh" ]
 CMD [ "wsgi_handler.handler" ]
