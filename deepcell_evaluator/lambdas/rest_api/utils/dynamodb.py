@@ -125,7 +125,7 @@ class DynamoDB():
             
         resp = []
         for d in data:
-            d['result'] = str(d['result'])
+            d['result'] = str(d['result']).replace("Decimal('", "").replace("')", "")
             resp.append(d)
             
         return resp
