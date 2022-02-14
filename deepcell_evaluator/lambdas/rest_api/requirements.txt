@@ -5,3 +5,4 @@ boto3
 flask-cors
 aws_lambda_powertools
 flask_swagger_ui
+awscli
