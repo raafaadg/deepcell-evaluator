@@ -114,8 +114,9 @@ $ cdk deploy
 
     cd ~/deepcell_evaluator/lambdas/rest_api
     docker build -t deepcell_rest_api .
-    docker run -p 9000:5000 deepcell_rest_api
+    docker run -p 9000:8080 -v$HOME/.aws:/root/.aws:ro deepcell_rest_api
 
+To make a request on a lambda running locally, is required to pass on the body an mock example of [API Gateway Proxy Lambda](https://github.com/awsdocs/aws-lambda-developer-guide/blob/main/sample-apps/nodejs-apig/event-v2.json).
 ## Run the REST Flask API locally on Flask App
 
     cd ~/deepcell_evaluator/lambdas/rest_api
@@ -125,7 +126,7 @@ $ cdk deploy
 
     cd ~/deepcell_evaluator/lambdas/graphql_api
     docker build -t deepcell_graphql_api .
-    docker run -p 9000:5000 deepcell_graphql_api
+    docker run -p 9000:8080 -v$HOME/.aws:/root/.aws:ro deepcell_graphql_api
 
 ## Run the tests
 
