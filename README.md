@@ -36,7 +36,7 @@ As mentioned before, the service is exposed through both interfaces, a REST API 
 
 On the other hand, GraphQL is implemented using AWS AppSync, using also an Lambda and DynamoDB as Data Source. Both Lambdas have the same utility on this process, just being addapted to the correct environment.
 
-When talking about the Rest API, the better way provided to test it and learn more about the API Contract, is taking looki at [Swagger Documentation](https://7n2tohdq9f.execute-api.us-east-1.amazonaws.com/prod/api/docs) develop for the running Flask API.
+When talking about the Rest API, the better way provided to test it and learn more about the API Contract, is taking looki at [Swagger Documentation](https://s3.amazonaws.com/deepcell-evaluator.com/docs/index.html#/) develop for the running Flask API.
 
 ![Deepcell Evaluator Infra](docs/images/deepcell-infra.png)
 
